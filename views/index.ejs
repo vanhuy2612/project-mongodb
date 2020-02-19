@@ -14,9 +14,39 @@
 
 <body>
     <h1><%= title%></h1>
-    <form action="/submit" method="POST">
-        <button>Click me</button>
-    </form>
+    <a href="/additem"><button>Thêm sản phẩm</button></a>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>id</th>
+            <th>name</th>
+            <th>view</th>
+            <th>Mô tả</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <% var count=1; %>
+        <% items.forEach( (item) => { %>
+            <tr>
+                <td><%= count%></td>
+                <td><%= item._id%></td>
+                <td><%= item.name%></td>
+                <td><%= item.view%></td>
+                <td><%= item.des%></td>
+                <td>
+                    <a href="/updateitem?id=<%= item._id%>">
+                        <button type="submit">Update</button>
+                    </a>
+                </td>
+                <td>
+                    <form action="/delete?id=<%= item._id%>" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% count++; %>
+        <%})%>
+    </table>
 </body>
 
 </html>
